@@ -25,7 +25,7 @@
   <body>
     <main>
       <h1>TOTP Generator</h1>
-      <p>Enter your Base32 secret key to generate a six-digit, 30-second time-based one-time password.</p>
+      <p>Enter your Base32 secret key to generate a six-digit, 15-second time-based one-time password.</p>
       <label for="secret">Secret key</label>
       <input id="secret" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="e.g. JBSWY3DPEHPK3PXP" />
       <div class="otp" id="otp">------</div>
@@ -68,10 +68,10 @@
 
       async function refresh() {
         const now = Date.now();
-        const remaining = 30 - Math.floor((now / 1000) % 30);
+        const remaining = 30 - Math.floor((now / 1000) % 15);
         remainingEl.textContent = `${remaining}s`;
-        progressEl.style.width = `${(remaining / 30) * 100}%`;
-        const counter = Math.floor(now / 30_000);
+        progressEl.style.width = `${(remaining / 15) * 100}%`;
+        const counter = Math.floor(now / 15_000);
         const secret = secretInput.value;
         if (!secret.trim()) { otpEl.textContent = '------'; statusEl.textContent = 'Waiting for a secret'; errorEl.textContent = ''; lastCounter = -1; return; }
         if (counter === lastCounter) return;
