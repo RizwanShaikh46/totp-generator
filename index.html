@@ -29,7 +29,7 @@
       <label for="secret">Secret key</label>
       <input id="secret" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="e.g. JBSWY3DPEHPK3PXP" />
       <div class="otp" id="otp">------</div>
-      <div class="meta"><span id="status">Waiting for a secret</span><span id="remaining">30s</span></div>
+      <div class="meta"><span id="status">Waiting for a secret</span><span id="remaining">15s</span></div>
       <div class="bar"><div id="progress"></div></div>
       <div class="error" id="error" role="alert"></div>
       <p class="hint">The secret stays in this browser and is never sent anywhere.</p>
@@ -68,7 +68,7 @@
 
       async function refresh() {
         const now = Date.now();
-        const remaining = 30 - Math.floor((now / 1000) % 15);
+        const remaining = 15 - Math.floor((now / 1000) % 15);
         remainingEl.textContent = `${remaining}s`;
         progressEl.style.width = `${(remaining / 15) * 100}%`;
         const counter = Math.floor(now / 15_000);
